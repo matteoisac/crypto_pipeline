@@ -1,0 +1,40 @@
+# Secrets
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Local data
+data/*
+!data/.gitkeep
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# AWS credentials
+.aws/
+
+# Airflow local files
+airflow.db
+airflow.cfg
