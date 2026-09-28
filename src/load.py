@@ -4,7 +4,11 @@ from extract import extract_data
 rows = extract_data()
 
 conn = psycopg.connect(
-    dbname="crypto_pipeline"
+    dbname="crypto_pipeline",
+    user="postgres",
+    password="postgres",
+    host="localhost",
+    port=5433
 )
 
 print("Connected to PostgreSQL")

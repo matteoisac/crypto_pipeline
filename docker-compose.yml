@@ -1,0 +1,16 @@
+services:              #quali programmi voglio far girare con Docker
+  postgres:            #nome che diamo al servizio
+    image: postgres:17 #usa PostgreSQL 17 già preparato
+    environment:
+      POSTGRES_DB: crypto_pipeline
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+
+volumes:
+  postgres_data:
+  
