@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS crypto_prices (
+    timestamp TIMESTAMP PRIMARY KEY,
+    open DOUBLE PRECISION,
+    high DOUBLE PRECISION,
+    low DOUBLE PRECISION,
+    close DOUBLE PRECISION,
+    volume DOUBLE PRECISION
+);
