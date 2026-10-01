@@ -15,15 +15,17 @@ services:
     image: apache/airflow:3.1.0
     command: airflow standalone
     environment:
-      _PIP_ADDITIONAL_REQUIREMENTS: "psycopg[binary] requests"
+      _PIP_ADDITIONAL_REQUIREMENTS: "psycopg[binary] requests boto3"
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres:5432/airflow
+      PYTHONPATH: /opt/airflow
     ports:
       - "8080:8080"
     volumes:
       - ./dags:/opt/airflow/dags
       - ./src:/opt/airflow/src
+      - ~/.aws:/home/airflow/.aws:ro
 
 
 volumes:
