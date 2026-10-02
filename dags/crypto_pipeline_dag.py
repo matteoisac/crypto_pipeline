@@ -8,6 +8,13 @@ def run_pipeline():
     load_data()
 
 
+def export_pipeline():
+    from src.export import export_to_csv, upload_to_s3
+
+    export_to_csv()
+    upload_to_s3()
+
+
 with DAG(
     dag_id="crypto_pipeline",
     start_date=datetime(2026, 1, 1),
@@ -19,3 +26,10 @@ with DAG(
         task_id="run_crypto_pipeline",
         python_callable=run_pipeline
     )
+
+    export_to_s3_task = PythonOperator(
+        task_id="export_to_s3",
+        python_callable=export_pipeline
+    )
+
+    run_pipeline_task >> export_to_s3_task
