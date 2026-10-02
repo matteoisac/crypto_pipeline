@@ -15,6 +15,11 @@ def export_pipeline():
     upload_to_s3()
 
 
+def redshift_pipeline():
+    from src.redshift import load_to_redshift
+    load_to_redshift()
+
+
 with DAG(
     dag_id="crypto_pipeline",
     start_date=datetime(2026, 1, 1),
@@ -32,4 +37,9 @@ with DAG(
         python_callable=export_pipeline
     )
 
-    run_pipeline_task >> export_to_s3_task
+    load_to_redshift_task = PythonOperator(
+        task_id="load_to_redshift",
+        python_callable=redshift_pipeline
+    )
+
+    run_pipeline_task >> export_to_s3_task >> load_to_redshift_task
