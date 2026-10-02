@@ -20,13 +20,13 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres:5432/airflow
       PYTHONPATH: /opt/airflow
+      POSTGRES_PASSWORD: postgres
     ports:
       - "8080:8080"
     volumes:
       - ./dags:/opt/airflow/dags
       - ./src:/opt/airflow/src
       - ~/.aws:/home/airflow/.aws:ro
-
 
 volumes:
   postgres_data:

@@ -1,3 +1,4 @@
+import os
 import psycopg
 from src.extract import extract_data
 
@@ -8,7 +9,7 @@ def load_data():
     conn = psycopg.connect(
         dbname="crypto_pipeline",
         user="postgres",
-        password="postgres",
+        password=os.getenv("POSTGRES_PASSWORD"),
         host="postgres",
         port=5432
     )

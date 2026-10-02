@@ -38,3 +38,5 @@ data/*
 # Airflow local files
 airflow.db
 airflow.cfg
+__pycache__/
+*.pyc

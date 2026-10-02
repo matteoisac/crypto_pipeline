@@ -1,3 +1,4 @@
+import os
 import psycopg
 import csv
 import boto3
@@ -8,7 +9,7 @@ def export_to_csv():
     conn = psycopg.connect(
         dbname="crypto_pipeline",
         user="postgres",
-        password="postgres",
+        password=os.getenv("POSTGRES_PASSWORD"),
         host="postgres",
         port=5432
     )
